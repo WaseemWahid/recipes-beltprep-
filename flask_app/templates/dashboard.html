@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Dashboard</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="d-flex justify-content-around">
+        Welcome , {{ logged_in_user.first_name }}
+        <div class="d-flex justify-content-between">
+            <a href="/recipes/new" class="btn btn-primary">Create</a>
+            <a href="/logout" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
+    <div>
+        <h2>These are the Recipes!</h2>
+        <table class="table">
+            <th>
+                <tr>
+                    <th>Name</th>
+                    <th>less than 30 minutes</th>
+                    <th>Action</th>
+                </tr>
+            </th>
+            <tbody>
+                {% for recipe in all_recipes %}
+                    <tr>
+                        <td>{{ recipe.name }}</td>
+                        <td>{{ recipe.under_thirty }}</td>
+                        <td>
+                            <a href="/recipes/{{recipe.id}}" class="btn btn-primary">view instructions</a>
+                            {% if logged_in_user.id == recipe.user.id %}
+                            <a href="/recipes/edit/{{recipe.id}}" class="btn btn-warning">edit</a>
+                            <a href="/recipes/delete/{{recipe.id}}" class="btn btn-danger">delete</a>
+                            {% endif %}
+                        </td>
+                        
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

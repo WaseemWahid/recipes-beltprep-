@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="d-flex justify-content-around">
+        <h1>
+            Welcome {{ logged_in_user.first_name}}
+        </h1>
+        <div class="d-flex justify-content-around">
+            <a href="/dashboard" class="btn btn-success">Dashboard</a>
+            <a href="/logout" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
+    <h1>{{ one_recipe.name }}</h1>
+    <ul>
+        <li>Description: {{ one_recipe.description }}</li>
+        <li>Instruction: {{ one_recipe.instruction }}</li>
+        <li>Created by: {{ one_recipe.user.first_name }} {{ one_recipe.user.last_name }}</li>
+        <li>Created: {{ one_recipe.date_made }}</li>
+        <li>Updated: {{ one_recipe.updated_at }}</li>
+    </ul>
+</body>
+</html>
